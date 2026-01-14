@@ -1,61 +1,61 @@
-# John the Ripper – Password Cracking Lab
+# Offline Password Risk Assessment
 
 ## Overview
-This project demonstrates practical password cracking using **John the Ripper** in a Linux (Ubuntu on WSL) environment.  
-The objective is to show hands‑on understanding of password security, hash formats, and cracking methodologies.
+This repository documents an **offline password security assessment** performed using John the Ripper in a controlled Linux environment.  
+The objective is to evaluate the **risk introduced by weak password policies and fast hashing algorithms** when password hashes are exposed, simulating realistic post-breach conditions.
+
+The focus of this project is **risk analysis and defensive insight**, not exploitation.
 
 ---
 
-## Tools & Environment
-- **Tool:** John the Ripper
-- **OS:** Ubuntu Linux (WSL)
-- **Attack Type:** Wordlist attack
+## Scope & Ethical Notice
+- All password hashes used in this assessment were **self-generated**
+- No real user credentials or production systems were involved
+- The activity was conducted strictly for educational and defensive learning purposes
+- The assessment models attacker behavior **after credential store exposure**
+
+---
+
+## Environment & Tools
+- **Operating System:** Ubuntu Linux (WSL)
+- **Primary Tool:** John the Ripper
+- **Assessment Method:** Offline wordlist-based hash evaluation
+- **Wordlist:** rockyou.txt
 
 ---
 
 ## Hash Information
 - **Hash Type:** MD5 (md5crypt)
-- **Source:** Self‑created hash for educational purposes
+- **Hash Source:** Locally generated credential
+- **Purpose:** Demonstrate reduced resistance of fast hashing algorithms during offline attacks
 
 ---
 
 ## Methodology
-1. Created and verified an MD5 password hash
-2. Loaded the hash into John the Ripper
-3. Tested incremental (brute‑force) mode
-4. Performed a **wordlist attack** using `rockyou.txt`
-5. Successfully recovered the plaintext password
+1. Generated a local password hash to simulate leaked credentials  
+2. Verified hash format and integrity  
+3. Performed baseline testing using incremental mode  
+4. Executed an offline wordlist-based evaluation  
+5. Observed recovery feasibility and attack effectiveness  
+
+This methodology reflects real-world scenarios where attackers operate **without rate limits or authentication controls**.
 
 ---
 
-## Screenshots
-Screenshots are provided to demonstrate correct command usage and successful password cracking.
-
-- Hash file verification  
-- John the Ripper running with wordlist  
-- Successfully cracked password output  
-
+## Results
+- The plaintext password was successfully recovered from the hash
+- The assessment confirmed that **weak passwords combined with fast hashing algorithms** significantly lower resistance to offline attacks
 
 ---
 
-## Result
-Password was successfully cracked using John the Ripper.
+## Risk Impact Analysis
+The successful recovery of the plaintext password demonstrates that password security must be evaluated **under the assumption of hash exposure**.
 
----
+Common real-world sources of hash exposure include:
+- Database breaches
+- Backup leaks
+- Misconfigured file permissions
+- Insider threats
 
-## Ethical Notice
-This lab was conducted **only on self‑generated hashes** in a controlled environment for learning purposes.  
-No unauthorized systems or real user data were involved.
+Once hashes are obtained, attackers can perform unrestricted offline attacks, increasing the likelihood of **credential reuse and lateral movement**.
 
----
-
-## Key Learnings
-- Importance of strong passwords
-- Real‑world effectiveness of wordlist attacks
-- Practical use of John the Ripper on Linux
-- Troubleshooting in restricted environments (WSL)
-
----
-
-## Author
-Third‑year Computer Science student with interest in **Cybersecurity & Network Defense**
